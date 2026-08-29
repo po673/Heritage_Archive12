@@ -506,6 +506,14 @@ body.dark-theme-mode .brand-subtitle {
   color: #D1C7BD;
 }
 
+/* Header Right Actions Container */
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 /* Header Quote / Slogan Pill */
 .header-quote-tag {
   position: relative;
@@ -730,7 +738,8 @@ body.dark-theme-mode .home-page-root,
 body.dark-theme-mode .about-page-root,
 body.dark-theme-mode .history-page-root,
 body.dark-theme-mode .photos-page-root,
-body.dark-theme-mode .contact-page-root {
+body.dark-theme-mode .contact-page,
+body.dark-theme-mode .favorites-page-container {
   background-color: #090d16 !important;
   color: #f8fafc !important;
 }

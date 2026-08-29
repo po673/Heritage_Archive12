@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Home, Users, User, Feather, Image, Video, Mic, FileText,
   Settings, Grid, Eye, BookOpen, Sparkles, ShieldCheck, Mail, Info,
@@ -26,6 +27,9 @@ import FavoriteToast from './components/FavoriteToast';
 import { useFavorites } from './hooks/useFavorites';
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const getPageFromPath = (path) => {
     const cleanPath = path.replace(/^\/+|\/+$/g, '').toLowerCase();
     if (!cleanPath || cleanPath === 'home') return 'home';
@@ -33,9 +37,7 @@ export default function App() {
     return cleanPath;
   };
 
-  const [currentPage, setCurrentPage] = useState(() => {
-    return getPageFromPath(window.location.pathname);
-  });
+  const currentPage = getPageFromPath(location.pathname);
   const [overviewMode, setOverviewMode] = useState(false);
   const [activeHistoryPerson, setActiveHistoryPerson] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,16 +50,6 @@ export default function App() {
     // Check system preference
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
-
-  // Sync state on popstate (browser back/forward button)
-  useEffect(() => {
-    const handlePopState = () => {
-      const page = getPageFromPath(window.location.pathname);
-      setCurrentPage(page);
-    };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
 
   // Central Favorites Hook
   const { favorites, toggleFavorite, isFavorite, removeFavorite, clearAllFavorites, toastNotification, closeToast } = useFavorites();
@@ -81,16 +73,13 @@ export default function App() {
   }, [isDarkMode]);
 
   const handleNavigate = (pageId, person = null) => {
-    setCurrentPage(pageId);
     setOverviewMode(false);
     setIsMobileMenuOpen(false);
     if (person) {
       setActiveHistoryPerson(person);
     }
     const targetPath = pageId === 'home' ? '/' : `/${pageId}`;
-    if (window.location.pathname !== targetPath) {
-      window.history.pushState({}, '', targetPath);
-    }
+    navigate(targetPath);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -196,11 +185,11 @@ export default function App() {
             </div>
           </div>
 
-          <div className="header-quote-tag">
-            "நம் வரலாறு நம் அடையாளம்"
-          </div>
-
           <div className="header-right-actions">
+            <div className="header-quote-tag">
+              "நம் வரலாறு நம் அடையாளம்"
+            </div>
+
             {/* Attractive Theme Toggle Button (Light/Dark Mode) */}
             <button
               className={`theme-toggle-btn ${isDarkMode ? 'dark' : 'light'}`}

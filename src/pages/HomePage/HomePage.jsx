@@ -275,7 +275,7 @@ export default function HomePage({ onNavigate }) {
             >
               <div className="gallery-img-wrap full-image">
                 <img src={photo.img} alt={photo.title} loading="lazy" decoding="async" />
-                
+
                 {/* Hover Card Overlay (Slides up from bottom on hover) */}
                 <div className="gallery-hover-card-overlay">
                   <h3>{photo.title}</h3>

@@ -5,7 +5,7 @@ import useScrollReveal from '../../hooks/useScrollReveal';
 import CommentSection from '../../components/CommentSection/CommentSection';
 import './VideosPage.css';
 
-export default function VideosPage({ selectedVideoId, onSelectVideo, onToggleFavorite = () => {}, isFavorite = () => false }) {
+export default function VideosPage({ selectedVideoId, onSelectVideo, onToggleFavorite = () => { }, isFavorite = () => false }) {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
