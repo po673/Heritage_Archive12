@@ -775,6 +775,12 @@ body.dark-theme-mode .gallery-card {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
+body.dark-theme-mode .audio-modal-card {
+  background: rgba(15, 23, 42, 0.98) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
 /* Dark Mode Hardcoded Inline Styles Overrides */
 body.dark-theme-mode .category-card h3,
 body.dark-theme-mode .gallery-card-body h3,
