@@ -15,6 +15,10 @@ import DocumentsPage from './pages/DocumentsPage/DocumentsPage';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import AdminPage from './pages/AdminPage/AdminPage';
+import BiographyPage from './pages/BiographyPage/BiographyPage';
+import GenerationsPage from './pages/GenerationsPage/GenerationsPage';
+import PoetryPage from './pages/PoetryPage/PoetryPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 import AudioPlayer from './components/AudioPlayer';
 import AudioNotification from './components/AudioNotification';
@@ -22,7 +26,16 @@ import FavoriteToast from './components/FavoriteToast';
 import { useFavorites } from './hooks/useFavorites';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const getPageFromPath = (path) => {
+    const cleanPath = path.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (!cleanPath || cleanPath === 'home') return 'home';
+    if (cleanPath === 'gallery') return 'photos';
+    return cleanPath;
+  };
+
+  const [currentPage, setCurrentPage] = useState(() => {
+    return getPageFromPath(window.location.pathname);
+  });
   const [overviewMode, setOverviewMode] = useState(false);
   const [activeHistoryPerson, setActiveHistoryPerson] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,6 +48,16 @@ export default function App() {
     // Check system preference
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+
+  // Sync state on popstate (browser back/forward button)
+  useEffect(() => {
+    const handlePopState = () => {
+      const page = getPageFromPath(window.location.pathname);
+      setCurrentPage(page);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Central Favorites Hook
   const { favorites, toggleFavorite, isFavorite, removeFavorite, clearAllFavorites, toastNotification, closeToast } = useFavorites();
@@ -64,6 +87,11 @@ export default function App() {
     if (person) {
       setActiveHistoryPerson(person);
     }
+    const targetPath = pageId === 'home' ? '/' : `/${pageId}`;
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePlayAudio = (audioTrack) => {
@@ -142,6 +170,10 @@ export default function App() {
       );
       case 'contact': return <ContactPage />;
       case 'admin': return <AdminPage />;
+      case 'biography': return <BiographyPage />;
+      case 'generations': return <GenerationsPage />;
+      case 'poetry': return <PoetryPage />;
+      case 'profile': return <ProfilePage />;
       default: return <HomePage onNavigate={handleNavigate} />;
     }
   };
