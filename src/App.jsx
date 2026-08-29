@@ -188,7 +188,10 @@ export default function App() {
               <ShieldCheck size={28} color="#D97706" />
             </div>
             <div className="brand-text">
-              <span className="brand-title">தமிழ் வரலாறு & சிறப்புப் பேர்கள்</span>
+              <span className="brand-title">
+                <span className="brand-title-line1">தமிழ் வரலாறு</span>{' '}
+                <span className="brand-title-line2">& சிறப்புப் பேர்கள்</span>
+              </span>
               <span className="brand-subtitle">நம் மண்ணின் பெருமையையும், மக்களின் சாதனைகளையும் அறிந்து கொள்வோம்...</span>
             </div>
           </div>
@@ -197,14 +200,30 @@ export default function App() {
             "நம் வரலாறு நம் அடையாளம்"
           </div>
 
-          {/* Mobile Hamburger Menu Toggle Button */}
-          <button
-            className="mobile-menu-toggle-btn"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="header-right-actions">
+            {/* Attractive Theme Toggle Button (Light/Dark Mode) */}
+            <button
+              className={`theme-toggle-btn ${isDarkMode ? 'dark' : 'light'}`}
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              title={isDarkMode ? 'வெளிச்சப் பயன்முறை (Light Mode)' : 'இரவுப் பயன்முறை (Dark Mode)'}
+              aria-label="Toggle theme mode"
+            >
+              {isDarkMode ? (
+                <Sun size={18} className="theme-icon sun-icon" />
+              ) : (
+                <Moon size={18} className="theme-icon moon-icon" />
+              )}
+            </button>
+
+            {/* Mobile Hamburger Menu Toggle Button */}
+            <button
+              className="mobile-menu-toggle-btn"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
 
         <nav className={`nav-tabs-bar ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
@@ -222,21 +241,6 @@ export default function App() {
               </button>
             );
           })}
-          
-          {/* Attractive Theme Toggle Button (Light/Dark Mode) */}
-          <button
-            className={`theme-toggle-btn ${isDarkMode ? 'dark' : 'light'}`}
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            title={isDarkMode ? 'வெளிச்சப் பயன்முறை (Light Mode)' : 'இரவுப் பயன்முறை (Dark Mode)'}
-            aria-label="Toggle theme mode"
-          >
-            <div className="theme-toggle-glow" />
-            {isDarkMode ? (
-              <Sun size={18} className="theme-icon sun-icon" />
-            ) : (
-              <Moon size={18} className="theme-icon moon-icon" />
-            )}
-          </button>
         </nav>
       </header>
 
