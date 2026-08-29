@@ -765,6 +765,8 @@ body.dark-theme-mode .personality-card,
 body.dark-theme-mode .history-card,
 body.dark-theme-mode .about-card,
 body.dark-theme-mode .contact-card,
+body.dark-theme-mode .contact-form-card,
+body.dark-theme-mode .fav-card,
 body.dark-theme-mode .category-card,
 body.dark-theme-mode .gallery-card {
   background-color: #141c2e !important;
@@ -827,7 +829,6 @@ body.dark-theme-mode .vh-card-header h3 {
 }
 
 body.dark-theme-mode p,
-body.dark-theme-mode span,
 body.dark-theme-mode label,
 body.dark-theme-mode .stb-title-group p,
 body.dark-theme-mode .stage-video-desc p,
