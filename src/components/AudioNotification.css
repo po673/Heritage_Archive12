@@ -1,0 +1,111 @@
+.audio-toast-notification {
+  position: fixed;
+  bottom: 110px;
+  right: 24px;
+  z-index: 99998;
+  background: linear-gradient(135deg, #0f172a, #1e1b4b);
+  border: 1.5px solid #f59e0b;
+  border-radius: 16px;
+  padding: 14px 18px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.4);
+  max-width: 360px;
+  width: 90%;
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toast-music-pulse {
+  animation: iconPulse 1.5s infinite alternate;
+}
+
+@keyframes iconPulse {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1.15); }
+}
+
+.toast-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.toast-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.toast-content h4 {
+  font-size: 0.92rem;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.toast-content p {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toast-close-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.toast-close-btn:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .audio-toast-notification {
+    right: 16px;
+    left: 16px;
+    width: auto;
+    bottom: 120px;
+  }
+}
