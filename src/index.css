@@ -809,6 +809,15 @@ body.dark-theme-mode .acm-sort-select {
   color: #f8fafc !important;
 }
 
+body.dark-theme-mode .form-group label {
+  color: #f8fafc !important;
+}
+
+body.dark-theme-mode input::placeholder,
+body.dark-theme-mode textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
 /* Dark Mode Typography (Headers, Titles, Subtitles) */
 body.dark-theme-mode h1,
 body.dark-theme-mode h2,
